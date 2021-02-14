@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "r75K52Mr0aYM9x7wdBYHdnxSSW6bUQinRsWC8N6VfTVinHxYyTtWUahDxAGPE/Z5mvkITGVH4D1VunhuZlh2tQ==",
+  "success": true,
+  "projectFilePath": "/media/mateo/Backup 4TB/Disco/Mm/Microverse/Interview tests/visual_contact/token_generator_dotnet/token_generator_dotnet.csproj",
+  "expectedPackageFiles": [
+    "/home/mateo/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/home/mateo/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/home/mateo/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "/home/mateo/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "/home/mateo/.nuget/packages/swashbuckle.aspnetcore.swaggergen/5.6.3/swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "/home/mateo/.nuget/packages/swashbuckle.aspnetcore.swaggerui/5.6.3/swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}
