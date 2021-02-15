@@ -14,7 +14,12 @@ namespace token_generator_dotnet.Contollers {
     [HttpGet]
     public string GetToken()
     {
-      Token token = GenerateToken(); 
+      string userName =  Request.Headers["user"];
+      string generatedToken = GenerateToken(userName);
+      Token token = new() {
+        token = generatedToken
+      };
+
       var response = JsonSerializer.Serialize(token);
       return response;
     }
@@ -24,10 +29,13 @@ namespace token_generator_dotnet.Contollers {
       public string token { get; init; }
     }
 
-    private Token GenerateToken()
+    private string GenerateToken(string userName)
     {
+      if (userName == null){
+        userName = "Guest";
+      }
+      // Console.WriteLine(userName);
       int expires = 10000;
-      string userName = "user1";
       string appID = "ApplicationID";
       string key = "rUlaMASgt1Byi4Kp3sKYDeQzo";
 
@@ -46,10 +54,7 @@ namespace token_generator_dotnet.Contollers {
 
       string serialized = body + '\0' + macHex;
 
-      Token token = new()
-      {
-        token = Convert.ToBase64String(encoder.GetBytes(serialized))
-      };
+      string token = Convert.ToBase64String(encoder.GetBytes(serialized));
 
       return token ;
 

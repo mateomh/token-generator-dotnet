@@ -32,6 +32,12 @@ namespace token_generator_dotnet
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "token_generator_dotnet", Version = "v1" });
             });
+            services.AddCors(options => options.AddDefaultPolicy(
+              policy_builder => { 
+                policy_builder.AllowAnyOrigin();
+                policy_builder.AllowAnyHeader();
+              }
+            ));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +53,8 @@ namespace token_generator_dotnet
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
