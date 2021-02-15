@@ -21,6 +21,7 @@ namespace token_generator_dotnet
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("http://*:3001", "https://*:3000");
                 });
     }
 }
