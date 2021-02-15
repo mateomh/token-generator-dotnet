@@ -15,7 +15,10 @@ namespace token_generator_dotnet.Contollers {
     public string GetToken()
     {
       string userName =  Request.Headers["user"];
-      string generatedToken = GenerateToken(userName);
+
+      Console.WriteLine($"User: {userName}");
+
+      string generatedToken = GenerateToken(userName, 10000);
       Token token = new() {
         token = generatedToken
       };
@@ -29,15 +32,20 @@ namespace token_generator_dotnet.Contollers {
       public string token { get; init; }
     }
 
-    private string GenerateToken(string userName)
+    private string GenerateToken(string userName, int expiresInSecs)
     {
       if (userName == null){
         userName = "Guest";
       }
-      // Console.WriteLine(userName);
-      int expires = 10000;
-      string appID = "ApplicationID";
-      string key = "rUlaMASgt1Byi4Kp3sKYDeQzo";
+
+      long EPOCH_SECONDS = 62167219200;
+      string expires = "";
+
+      TimeSpan timeSinceEpoch = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1, 0, 0, 0));
+      expires = (Math.Floor(timeSinceEpoch.TotalSeconds) + EPOCH_SECONDS + expiresInSecs).ToString();
+ 
+      string appID = Environment.GetEnvironmentVariable("APP_ID");
+      string key = Environment.GetEnvironmentVariable("APP_KEY");
 
       string jid = userName + "@" + appID;
       string body = "provision" + "\0" + jid + "\0" + expires + "\0" + "";
@@ -57,8 +65,6 @@ namespace token_generator_dotnet.Contollers {
       string token = Convert.ToBase64String(encoder.GetBytes(serialized));
 
       return token ;
-
-      // Console.WriteLine("\nGenerated token:\n" + Convert.ToBase64String(encoder.GetBytes(serialized)));
     }
 
     private static string BytesToHex(byte[] bytes)

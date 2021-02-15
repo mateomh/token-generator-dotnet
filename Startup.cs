@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,6 +20,9 @@ namespace token_generator_dotnet
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            var root = Directory.GetCurrentDirectory();
+            var dotenv = Path.Combine(root, ".env");
+            DotEnv.Load(dotenv);
         }
 
         public IConfiguration Configuration { get; }
