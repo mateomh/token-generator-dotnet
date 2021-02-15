@@ -16,6 +16,10 @@ namespace token_generator_dotnet.Contollers {
     {
       string userName =  Request.Headers["user"];
 
+      if (userName == null){
+        userName = "Guest";
+      }
+
       Console.WriteLine($"User: {userName}");
 
       string generatedToken = GenerateToken(userName, 10000);
@@ -34,10 +38,6 @@ namespace token_generator_dotnet.Contollers {
 
     private string GenerateToken(string userName, int expiresInSecs)
     {
-      if (userName == null){
-        userName = "Guest";
-      }
-
       long EPOCH_SECONDS = 62167219200;
       string expires = "";
 
